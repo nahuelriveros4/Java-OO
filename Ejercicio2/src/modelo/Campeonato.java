@@ -23,11 +23,24 @@ public class Campeonato {
             if (partes.length >= 2) {
                 String nombre = partes[0].trim();
                 String dni = partes[1].trim();
+
+                if (nombre.isEmpty()) {
+                        throw new ValidacionDeportistaException("Nombre vacío en la línea: " + linea);
+                }
+                if (dni.isEmpty()) {
+                    throw new ValidacionDeportistaException.DniVacio("DNI vacío en la línea: " + linea);
+                }
+
                 lista.add(new Deportista(nombre, dni));
             } else {
                 System.out.println("Línea con formato inválido: " + linea);
             }
         }
+        if (lista.size() < 2) {
+            throw new ValidacionDeportistaException.CantidadInsuficiente("Se necesitan al menos 2 deportistas.");
+        }
+    } catch (ValidacionDeportistaException e) {
+            System.out.println("Error: " + e.getMessage());
     } catch (IOException e) {
         System.out.println("Error al leer el archivo: " + e.getMessage());
     }
