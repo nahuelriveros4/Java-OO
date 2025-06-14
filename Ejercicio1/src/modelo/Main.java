@@ -5,8 +5,6 @@
 package modelo;
 
 import java.util.Scanner;
-import modelo.Gestor;
-import modelo.ViajeroFrecuente;
 
 public class Main {
     public static void main(String[] args){
